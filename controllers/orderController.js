@@ -6,7 +6,6 @@ const moment = require('moment');
 exports.searchOrder = async (req, res, next) => {
     try {
         const { trackingNumber } = req.params;
-        console.log(trackingNumber)
         const order = await Order.findOne({
             where: { trackingNumber }
         });
@@ -23,7 +22,6 @@ exports.getListOrderByUser = async (req, res, next) => {
         const orderList = await Order.findAll({
             where: { userId: req.user.id }
         })
-        // console.log(JSON.parse(JSON.stringify(orderList)))
         req.orderList = orderList;
         next();
     } catch (err) {
@@ -88,7 +86,7 @@ exports.createOrder = async (req, res, next) => {
                 "24/09/2021": "Prince Mahidol Day", "13/10/2021": "The Passing of King Bhumibol", "22/10/2021": "Chulalongkorn Day", "06/12/2021": "King Bhumibol\'s Birthday",
                 "10/12/2021": "Thailand Constitution Day", "31/12/2021": "New Year\'s Eve"
             }
-            let date = moment(pickUpDate, "DD/MM/YYYY").format("MM.DD.YYYY");
+            let date = moment(pickUpDate, "YYYY/MM/DD");
             if (moment(date).format("E") === "5") {
                 date = moment(date).add(2, "days");
                 if (moment(date).format("E") === "7") {
@@ -136,8 +134,7 @@ exports.createOrder = async (req, res, next) => {
                 "24/09/2021": "Prince Mahidol Day", "13/10/2021": "The Passing of King Bhumibol", "22/10/2021": "Chulalongkorn Day", "06/12/2021": "King Bhumibol\'s Birthday",
                 "10/12/2021": "Thailand Constitution Day", "31/12/2021": "New Year\'s Eve"
             }
-            let date = moment(pickUpDate, "YYYY/MM/DD").format("MM.DD.YYYY");
-            console.log(date + "mmmmm")
+            let date = moment(pickUpDate, "YYYY/MM/DD");
             if (moment(date).format("E") === "5") {
                 date = moment(date).add(2, "days");
                 if (moment(date).format("E") === "7") {

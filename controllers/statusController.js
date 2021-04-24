@@ -19,7 +19,6 @@ exports.getStatus = async (req, res, next) => {
             order.dataValues["userId"] = userId;
             order.dataValues["status"] = status;
         };
-        console.log(JSON.parse(JSON.stringify(order)));
         res.status(200).json({ order });
     } catch (err) {
         next(err);

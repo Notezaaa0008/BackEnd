@@ -6,14 +6,12 @@ const checkController = require('../controllers/checkController');
 
 const router = express.Router();
 
-//ต้องมีการ check role ของ user
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        //null บอกว่าไม่ error
         cb(null, 'public/images')
-        // console.log(file)
     },
-    filename: (req, file, cb) => { //กำหนดชื่อ file ให้มันได้
+    filename: (req, file, cb) => {
         cb(null, `${Date.now()}.${file.mimetype.split('/')[1]}`)
     }
 });

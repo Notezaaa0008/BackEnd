@@ -71,8 +71,6 @@ exports.register = async (req, res, next) => {
                 postalCodeUser, phone1User, phone2User, role
             }, { transaction: trans });
         }
-
-        // console.log(user)
         const payload = { id: user.id, username, email, firstName, lastName, role };
         let ex = process.env.JWT_EXPIRES_IN.split('*');
         const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: ex[0] * ex[1] * ex[2] * ex[3] });
