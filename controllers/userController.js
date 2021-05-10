@@ -182,7 +182,7 @@ exports.editProFileUser = async (req, res, next) => {
         };
 
         if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))) {
-            return res.status(400).json({ message: 'email' })
+            return res.status(400).json({ message: 'Invalid email address.' })
         };
 
         if (req.file) {

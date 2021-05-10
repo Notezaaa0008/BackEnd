@@ -20,7 +20,8 @@ exports.searchOrder = async (req, res, next) => {
 exports.getListOrderByUser = async (req, res, next) => {
     try {
         const orderList = await Order.findAll({
-            where: { userId: req.user.id }
+            where: { userId: req.user.id },
+            order: [['trackingNumber', 'DESC']]
         })
         req.orderList = orderList;
         next();
@@ -31,7 +32,9 @@ exports.getListOrderByUser = async (req, res, next) => {
 
 exports.getListOrderByAll = async (req, res, next) => {
     try {
-        const orderListAll = await Order.findAll();
+        const orderListAll = await Order.findAll({
+            order: [['trackingNumber', 'DESC']]
+        });
         req.orderListAll = orderListAll;
         next();
     } catch (err) {
@@ -167,7 +170,6 @@ exports.createOrder = async (req, res, next) => {
         next(err);
     }
 };
-
 
 
 exports.deleteOrder = async (req, res, next) => {
