@@ -217,7 +217,7 @@ exports.changePassword = async (req, res, next) => {
     try {
         const { newPassword, confirmNewPassword } = req.body;
         if (newPassword === undefined) return res.status(400).json({ message: 'password is required' });
-        if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(password))) {
+        if (!(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(newPassword))) {
             return res.status(400).json({ message: 'Password must contain at least eight but not more than fifteen characters, Which contain at least one uppercase letters, lowercase letters, numbers, and special characters.' })
         }
         if (confirmNewPassword === undefined) return res.status(400).json({ message: 'password is required' });
